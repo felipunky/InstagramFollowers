@@ -20,13 +20,21 @@ namespace InstagramFollowers
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
+            UsernameText.Text = "";
+
         }
 
         private void InitializeMyControl()
         {
             // Put some text into the control first.  
-            textBox1.Text = "This is a TextBox control.";
+            UsernameText.Text = "Enter username";
+
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Selenium run = new Selenium();
+            run.RunScript();
+        }
     }
 }

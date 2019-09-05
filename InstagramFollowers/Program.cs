@@ -15,12 +15,10 @@ namespace InstagramFollowers
         [STAThread]
         static void Main()
         {
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
 
-            Selenium run = new Selenium();
-            run.RunScript();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault( false );
+            Application.Run( new Form1() );
 
         }
     }

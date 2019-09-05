@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,53 +29,104 @@ namespace InstagramFollowers
             xPath = "//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a",
             login = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[2]/div/label/input",
             password = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[3]/div/label/input",
-            enterUser = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button";
+            user = "randomrenders",
+            pass = "AnarkoBlas%2!=1",
+            enterUser = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button",
+            notifications = "//html/body/div[3]/div/div/div[3]/button[2]",
+            enterFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
+            friend = "david.rincong",
+            enterFoundFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div[2]/div[2]/div/a[1]/div/div[2]/div",
+            following = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
+            followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[3]/a",
+            friendsConcatenateOne = "//html/body/div[3]/div/div[2]/ul/div/li[",
+            friendsConcatenateTwo = "]/div/div[3]/button",
+            friends = "";
+
+            string[] splitForLoopMaxiter;
+
+            int sizeOfLoop = 0;
+
+            bool followOrFollowers = true;
+
+            int time = 500;
 
             //Navigate to google page
             driver.Navigate().GoToUrl( url );
 
-            //System.Threading.Thread.Sleep( 10000 );
-
             try
             {
 
-                System.Threading.Thread.Sleep( 1000 );
-
+                Sleep( time );
                 driver.FindElement( By.XPath( xPath ) ).Click();
+                Sleep( time );
 
-                System.Threading.Thread.Sleep( 1000 );
+                driver.FindElement( By.XPath( login ) ).SendKeys( user );
+                Sleep( time );
 
-                driver.FindElement( By.XPath( login ) ).SendKeys( "felipunkerito" );
-
-                System.Threading.Thread.Sleep( 1000 );
-
-                driver.FindElement( By.XPath( password ) ).SendKeys( "gonorrea" );
-
-                System.Threading.Thread.Sleep( 1000 );
+                driver.FindElement( By.XPath( password ) ).SendKeys( pass );
+                Sleep( time );
 
                 driver.FindElement( By.XPath( enterUser ) ).Click();
+                Sleep( time * 3 );
+
+                var noti = driver.FindElement( By.XPath( notifications ) );
+                if( noti != null ) noti.Click();
+                Sleep( time * 2 );
+
+                var friendFound = driver.FindElement( By.XPath( enterFriend ) );
+                if( friendFound != null )
+                { 
+
+                    friendFound.SendKeys( friend );
+                    Sleep( time * 3 );
+
+                    driver.FindElement( By.XPath( enterFoundFriend ) ).Click();
+                    Sleep( time * 3 );
+
+                    if( !followOrFollowers == false )
+                    { 
+
+                        following = followers;
+
+                    }
+
+                    var followFollowers = driver.FindElement( By.XPath( following ) );
+                    splitForLoopMaxiter = followFollowers.Text.Split( ' ' );
+                    sizeOfLoop = Convert.ToInt32( splitForLoopMaxiter[0] );
+
+                    Debug.WriteLine( sizeOfLoop.ToString() );
+                    //followFollowers.Click();
+                    //Sleep( time * 3 );
+                         
+                    //for( int i = 1; i <= 20; ++i)
+                    //{
+
+                    //    friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
+                    //    driver.FindElement( By.XPath( friends ) ).Click();
+                    //    Sleep( time );
+
+                    //}
+
+                }
 
             }
 
-            catch( Exception e )
+            catch ( Exception e )
             {
 
                 Console.WriteLine( e );
 
             }
 
-            //WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(3));
+        }
 
-            //Find the Search text box UI Element
-            //IWebElement element = driver.FindElement(By.Name("q"));
+        private void Sleep( int time )
+        {
 
-            //Perform Ops
-            //element.SendKeys("executeautomation");
-
-            //Close the browser
-            //driver.Close();
+            System.Threading.Thread.Sleep( time );
 
         }
+
     }
 
 }
