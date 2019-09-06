@@ -94,16 +94,16 @@
             this.WaitTime.AutoSize = true;
             this.WaitTime.Location = new System.Drawing.Point(37, 154);
             this.WaitTime.Name = "WaitTime";
-            this.WaitTime.Size = new System.Drawing.Size(108, 13);
+            this.WaitTime.Size = new System.Drawing.Size(129, 13);
             this.WaitTime.TabIndex = 6;
-            this.WaitTime.Text = "Wait time in seconds";
+            this.WaitTime.Text = "Wait time in milliseconds";
             // 
             // WaitTimeText
             // 
             this.WaitTimeText.BackColor = System.Drawing.SystemColors.Window;
-            this.WaitTimeText.Location = new System.Drawing.Point(146, 151);
+            this.WaitTimeText.Location = new System.Drawing.Point(172, 151);
             this.WaitTimeText.Name = "WaitTimeText";
-            this.WaitTimeText.Size = new System.Drawing.Size(559, 21);
+            this.WaitTimeText.Size = new System.Drawing.Size(533, 21);
             this.WaitTimeText.TabIndex = 3;
             // 
             // FriendLabel
