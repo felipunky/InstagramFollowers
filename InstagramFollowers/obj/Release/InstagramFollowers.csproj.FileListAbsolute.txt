@@ -1,0 +1,13 @@
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe.config
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.pdb
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.dll
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Form1.resources
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Properties.Resources.resources
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.GenerateResource.cache
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CoreCompileInputs.cache
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb

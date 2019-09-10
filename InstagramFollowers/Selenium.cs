@@ -143,16 +143,16 @@ namespace InstagramFollowers
 
                     //Debug.WriteLine( sizeOfLoop.ToString() );
                     
-                    //Sleep( time * 3 );
-                         
-                    //for( int i = 1; i <= 20; ++i)
-                    //{
+                    Sleep( time * 3 );
 
-                    //    friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
-                    //    driver.FindElement( By.XPath( friends ) ).Click();
-                    //    Sleep( time );
+                    for (int i = 1; i <= 20; ++i)
+                    {
 
-                    //}
+                        friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
+                        driver.FindElement(By.XPath(friends)).Click();
+                        Sleep(time);
+
+                    }
 
                 }
 
