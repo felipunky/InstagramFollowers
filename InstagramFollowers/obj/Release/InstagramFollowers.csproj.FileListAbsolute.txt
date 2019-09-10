@@ -11,3 +11,17 @@ D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollower
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe.config
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.pdb
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.dll
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Form1.resources
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Properties.Resources.resources
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.GenerateResource.cache
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CoreCompileInputs.cache
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb
+C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\SeleniumExtras.WaitHelpers.dll

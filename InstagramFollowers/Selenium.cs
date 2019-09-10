@@ -64,7 +64,7 @@ namespace InstagramFollowers
         public void RunScript()
         {
 
-            var options = new ChromeOptions();
+            OpenQA.Selenium.Chrome.ChromeOptions options = new ChromeOptions();
             options.AddArgument( @"--incognito" );
 
             //Create the reference for our browser
@@ -145,12 +145,19 @@ namespace InstagramFollowers
                     
                     Sleep( time * 3 );
 
-                    for (int i = 1; i <= 20; ++i)
+                    //for( int i = 1; i <= 5; ++i )
                     {
 
-                        friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
-                        driver.FindElement(By.XPath(friends)).Click();
-                        Sleep(time);
+                        //friends = friendsConcatenateOne + 1.ToString() + friendsConcatenateTwo;
+
+                        WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromSeconds( 10 ) );
+
+                        var fr = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible( By.XPath("/html/body/div[3]/div/div[2]/ul/div/li[1]/div/div[2]/button") ) );
+
+                        fr.Click();
+
+                        //driver.FindElement(By.XPath(friends)).Click();
+                        Sleep( 500 );
 
                     }
 
@@ -172,6 +179,19 @@ namespace InstagramFollowers
 
             System.Threading.Thread.Sleep( time );
 
+        }
+
+        public bool doesWebElementExist(string linkexist)
+        {
+            try
+            {
+                driver.FindElement(By.XPath(linkexist));
+                return true;
+            }
+            catch (NoSuchElementException e)
+            {
+                return false;
+            }
         }
 
     }
