@@ -3,7 +3,6 @@ D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollower
 D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.pdb
 D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.dll
 D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
-D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Form1.resources
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Properties.Resources.resources
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.GenerateResource.cache
@@ -38,3 +37,5 @@ C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.dll
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\SeleniumExtras.WaitHelpers.dll
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache

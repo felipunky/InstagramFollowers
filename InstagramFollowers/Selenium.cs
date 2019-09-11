@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 
@@ -128,7 +129,7 @@ namespace InstagramFollowers
                     Sleep( time * 3 );
 
                     string friendsConcatenateOne = "//html/body/div[3]/div/div[2]/ul/div/li[",
-                           friendsConcatenateTwo = "]/div/div[3]/button";
+                           friendsConcatenateTwo = "]/div/div[3]/button"; 
 
 
                     if ( followOrFollowers == false )
@@ -136,7 +137,6 @@ namespace InstagramFollowers
 
                         following = followers;
 
-                        ///html/body/div[3]/div/div[2]/ul/div/li[1]/div/div[3]/button
                     }
 
                     var followFollowers = driver.FindElement( By.XPath( following ) );
@@ -151,13 +151,85 @@ namespace InstagramFollowers
                     sizeOfLoop = Convert.ToInt32( number );
                     Sleep( time * 3 );
 
+                    IWebElement fds = null;
+
+                    int waitTime = time / 2, counter = 0, counterTwo = 0;
+
                     for (int i = 1; i <= sizeOfLoop; ++i)
                     {
 
-                        friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
-                        driver.FindElement(By.XPath(friends)).Click();
-                        Sleep(time);
+                        try
+                        { 
 
+                            friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
+                            WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromMilliseconds( waitTime ) );
+                            fds = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists( By.XPath( friends ) ) );
+
+                        }
+
+                        catch( WebDriverTimeoutException )
+                        {
+
+                            friends = friendsConcatenateOne + i.ToString() + "]/div/div[2]/button";
+                            WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromMilliseconds( waitTime ) );
+                            fds = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists( By.XPath( friends ) ) );
+
+                        }
+
+                        Debug.WriteLine( fds.Text );
+
+                        if( fds.Text == "Following" || fds.Text == "Requested" )
+                        {
+
+                            if( counter == 3 )
+                            { 
+
+                                driver.FindElement( By.XPath( "/html/body/div[3]/div/div[2]/ul" ) ).Click();
+                                driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
+
+                            }
+
+                            counter++;
+
+                            counter %= 4;
+
+                            counterTwo = 0;
+
+                        }
+
+                        else
+                        {
+
+                            fds.Click();
+
+                            if( counter == 3 )
+
+                                driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
+
+                            counter = 0;
+
+                            counterTwo++;
+
+                            counterTwo %= 4;
+
+                        }
+
+                        Sleep( time / 2 );
+
+                        //{
+
+                        //    Debug.WriteLine( "Hit!" );
+
+                        //    fds.Click();
+
+                        //    if( i % 5 == 4 )
+
+                        //    driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
+
+                        //    Sleep( 500 );
+
+                        //}
+                        
                     }
 
                 }

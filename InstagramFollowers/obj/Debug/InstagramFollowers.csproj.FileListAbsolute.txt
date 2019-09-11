@@ -10,7 +10,6 @@ D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.exe
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.pdb
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.Form1.resources
-D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.csprojAssemblyReference.cache
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.exe.config
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.exe
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.pdb
@@ -24,3 +23,4 @@ C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\I
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.csproj.CopyComplete
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.exe
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.pdb
+D:\Programas\InstagramFollowers\InstagramFollowers\bin\Debug\SeleniumExtras.WaitHelpers.dll
