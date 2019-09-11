@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -83,8 +84,6 @@ namespace InstagramFollowers
             enterFoundFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div[2]/div[2]/div/a[1]/div/div[2]/div",
             following = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
             followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[3]/a",
-            friendsConcatenateOne = "//html/body/div[3]/div/div[2]/ul/div/li[",
-            friendsConcatenateTwo = "]/div/div[3]/button",
             friends = "";
 
             string[] splitForLoopMaxiter;
@@ -128,36 +127,36 @@ namespace InstagramFollowers
                     driver.FindElement( By.XPath( enterFoundFriend ) ).Click();
                     Sleep( time * 3 );
 
-                    if( followOrFollowers == false )
+                    string friendsConcatenateOne = "//html/body/div[3]/div/div[2]/ul/div/li[",
+                           friendsConcatenateTwo = "]/div/div[3]/button";
+
+
+                    if ( followOrFollowers == false )
                     { 
 
                         following = followers;
 
+                        ///html/body/div[3]/div/div[2]/ul/div/li[1]/div/div[3]/button
                     }
 
                     var followFollowers = driver.FindElement( By.XPath( following ) );
                     followFollowers.Click();
 
                     splitForLoopMaxiter = followFollowers.Text.Split( ' ' );
-                    sizeOfLoop = Convert.ToInt32( splitForLoopMaxiter[0] );
+                    string amount = splitForLoopMaxiter[0];
 
-                    //Debug.WriteLine( sizeOfLoop.ToString() );
-                    
+                    var c = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+                    decimal number = decimal.Parse( amount, c );
+                    sizeOfLoop = Convert.ToInt32( number );
                     Sleep( time * 3 );
 
-                    //for( int i = 1; i <= 5; ++i )
+                    for (int i = 1; i <= sizeOfLoop; ++i)
                     {
 
-                        //friends = friendsConcatenateOne + 1.ToString() + friendsConcatenateTwo;
-
-                        WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromSeconds( 10 ) );
-
-                        var fr = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible( By.XPath("/html/body/div[3]/div/div[2]/ul/div/li[1]/div/div[2]/button") ) );
-
-                        fr.Click();
-
-                        //driver.FindElement(By.XPath(friends)).Click();
-                        Sleep( 500 );
+                        friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
+                        driver.FindElement(By.XPath(friends)).Click();
+                        Sleep(time);
 
                     }
 
@@ -168,7 +167,7 @@ namespace InstagramFollowers
             catch ( Exception e )
             {
 
-                Console.WriteLine( e );
+                Debug.WriteLine( e );
 
             }
 
@@ -179,19 +178,6 @@ namespace InstagramFollowers
 
             System.Threading.Thread.Sleep( time );
 
-        }
-
-        public bool doesWebElementExist(string linkexist)
-        {
-            try
-            {
-                driver.FindElement(By.XPath(linkexist));
-                return true;
-            }
-            catch (NoSuchElementException e)
-            {
-                return false;
-            }
         }
 
     }

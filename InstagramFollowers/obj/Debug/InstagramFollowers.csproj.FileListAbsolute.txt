@@ -14,9 +14,9 @@ D:\Programas\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.exe.config
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.exe
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\InstagramFollowers.pdb
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\WebDriver.dll
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Debug\WebDriver.xml
-C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.csprojAssemblyReference.cache
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.Form1.resources
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.Properties.Resources.resources
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Debug\InstagramFollowers.csproj.GenerateResource.cache

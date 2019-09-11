@@ -25,3 +25,16 @@ C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\
 C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
 C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb
 C:\Users\Paula\Desktop\Felipe\InstagramFollowers\InstagramFollowers\bin\Release\SeleniumExtras.WaitHelpers.dll
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Form1.resources
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.Properties.Resources.resources
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.GenerateResource.cache
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe.config
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.exe
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\InstagramFollowers.pdb
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\SeleniumExtras.WaitHelpers.dll
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.dll
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
+C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
