@@ -38,4 +38,3 @@ C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\bin\Release\WebDriver.xml
 C:\Users\Acer\Documents\GitHub\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
 D:\Programas\InstagramFollowers\InstagramFollowers\bin\Release\SeleniumExtras.WaitHelpers.dll
-D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache

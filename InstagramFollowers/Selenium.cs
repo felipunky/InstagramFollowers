@@ -145,6 +145,19 @@ namespace InstagramFollowers
                     splitForLoopMaxiter = followFollowers.Text.Split( ' ' );
                     string amount = splitForLoopMaxiter[0];
 
+                    char[] chars = amount.ToCharArray(); 
+
+                    int lengthOfAmount = chars.Length - 1;
+
+                    if( chars[lengthOfAmount] == 'k' )
+                    {
+
+                        amount = amount.Remove( lengthOfAmount, 1 );
+
+                    }
+
+                    Debug.WriteLine( amount );
+
                     var c = System.Threading.Thread.CurrentThread.CurrentCulture;
 
                     decimal number = decimal.Parse( amount, c );
@@ -153,12 +166,13 @@ namespace InstagramFollowers
 
                     IWebElement fds = null;
 
-                    int waitTime = time / 2, counter = 0, counterTwo = 0;
+                    //int waitTime = time / 5, counter = 0, counterTwo = 0, 
+                    int counterMax = 0;
 
                     for (int i = 1; i <= sizeOfLoop; ++i)
                     {
 
-                        try
+                        /*try
                         { 
 
                             friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
@@ -167,12 +181,29 @@ namespace InstagramFollowers
 
                         }
 
-                        catch( WebDriverTimeoutException )
+                        catch( Exception )
                         {
 
                             friends = friendsConcatenateOne + i.ToString() + "]/div/div[2]/button";
                             WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromMilliseconds( waitTime ) );
                             fds = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists( By.XPath( friends ) ) );
+
+                        }*/
+
+                        try
+                        {
+
+                            friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
+                            fds = driver.FindElement( By.XPath( friends ) );
+                            //Sleep( time / 4 );
+
+                        }
+
+                        catch( NoSuchElementException )
+                        {
+
+                            friends = friendsConcatenateOne + i.ToString() + "]/div/div[2]/button";
+                            fds = driver.FindElement( By.XPath( friends ) );
 
                         }
 
@@ -181,7 +212,7 @@ namespace InstagramFollowers
                         if( fds.Text == "Following" || fds.Text == "Requested" )
                         {
 
-                            if( counter == 3 )
+                            //if( counter == 1 )
                             { 
 
                                 driver.FindElement( By.XPath( "/html/body/div[3]/div/div[2]/ul" ) ).Click();
@@ -189,11 +220,11 @@ namespace InstagramFollowers
 
                             }
 
-                            counter++;
+                            //counter++;
 
-                            counter %= 4;
+                            //counter %= 2;
 
-                            counterTwo = 0;
+                            //counterTwo = 0;
 
                         }
 
@@ -202,15 +233,15 @@ namespace InstagramFollowers
 
                             fds.Click();
 
-                            if( counter == 3 )
+                            if( counterMax % 2 == 0 )
 
                                 driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
 
-                            counter = 0;
+                            //counter = 0;
 
-                            counterTwo++;
+                            //counterTwo++;
 
-                            counterTwo %= 4;
+                            //counterTwo %= 3;
 
                         }
 
@@ -229,7 +260,17 @@ namespace InstagramFollowers
                         //    Sleep( 500 );
 
                         //}
-                        
+
+                        /*counterMax++;
+
+                        if( i != 0 && counterMax % 20 == 0 )
+                        {
+
+                            Sleep( 60000 );
+                            Debug.WriteLine( "You hit the max count nigglet!" );
+
+                        }*/
+
                     }
 
                 }
