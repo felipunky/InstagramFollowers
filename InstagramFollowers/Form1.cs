@@ -38,15 +38,15 @@ namespace InstagramFollowers
         private void Button1_Click(object sender, EventArgs e)
         {
 
-            run.User = UsernameText.Text;
+            run.User = "protealingerie";//UsernameText.Text;
 
-            run.Pass = PasswordText.Text;
+            run.Pass = "gameofthrones2";//PasswordText.Text;
 
-            run.Friend = FriendText.Text;
+            run.Friend = "ellipselingerie";// FriendText.Text;
 
-            run.Time = Convert.ToInt32( WaitTimeText.Text );
+            run.Time = 1000;// Convert.ToInt32( WaitTimeText.Text );
 
-            run.FollowOrFollowing = FollowersOrFollowingCheckBox.Checked;
+            run.FollowOrFollowing = false;//FollowersOrFollowingCheckBox.Checked;
 
             run.RunScript();
 
@@ -73,6 +73,11 @@ namespace InstagramFollowers
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FollowOrFollowingLabel_Click(object sender, EventArgs e)
         {
 
         }

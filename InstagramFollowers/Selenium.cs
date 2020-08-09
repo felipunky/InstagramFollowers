@@ -73,18 +73,19 @@ namespace InstagramFollowers
             IWebDriver driver = new ChromeDriver( options );
 
             string url = "https://www.instagram.com/",
-            xPath = "//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a",
-            login = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[2]/div/label/input",
-            password = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[3]/div/label/input",
+            login = "//*[@id='loginForm']/div/div[1]/div/label/input",
+            password = "//*[@id='loginForm']/div/div[2]/div/label/input",
             user = User,
             pass = Pass,
-            enterUser = "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button",
-            notifications = "//html/body/div[3]/div/div/div[3]/button[2]",
-            enterFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
+            enterUser = "//*[@id='loginForm']/div/div[3]/button/div",
+            notifications = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
+            searchBar = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div",
             friend = Friend,
-            enterFoundFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div[2]/div[2]/div/a[1]/div/div[2]/div",
+            searchBarSendKeys = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
+            enterFoundFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]",
             following = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
-            followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[3]/a",
+            followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
+            numberOfFollowers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a/span",
             friends = "";
 
             string[] splitForLoopMaxiter;
@@ -95,32 +96,96 @@ namespace InstagramFollowers
 
             int time = Time;
 
-            //Navigate to google page
+            //Navigate to the page.
             driver.Navigate().GoToUrl( url );
+
+            Actions actions = new Actions( driver );
 
             try
             {
 
-                Sleep( time );
-                driver.FindElement( By.XPath( xPath ) ).Click();
-                Sleep( time );
-
-                driver.FindElement( By.XPath( login ) ).SendKeys( user );
-                Sleep( time );
+                //Sleep( time );
+                driver.FindElement( By.XPath( login ), 10 ).SendKeys( user );
 
                 driver.FindElement( By.XPath( password ) ).SendKeys( pass );
-                Sleep( time );
 
                 driver.FindElement( By.XPath( enterUser ) ).Click();
-                Sleep( time * 3 );
 
-                var noti = driver.FindElement( By.XPath( notifications ) );
-                if( noti != null ) noti.Click();
-                Sleep( time * 2 );
+                // Find using the search bar.
+                driver.FindElement( By.XPath( searchBar ), 10 ).Click();
 
-                var friendFound = driver.FindElement( By.XPath( enterFriend ) );
+                // Send keys to the search bar.
+                driver.FindElement( By.XPath( searchBarSendKeys ) ).SendKeys( friend );
+
+                // Click on the first friend from the search.
+                driver.FindElement( By.XPath( enterFoundFriend ), 10 ).Click();
+
+                // When the checkbox is unchecked the app will go to followers.
+                if( followOrFollowers == false )
+                {
+
+                    // Find how many followers exist to be able to loop.
+                    var numOfFollowers = driver.FindElement( By.XPath( numberOfFollowers ), 10 );
+                    string numberOfFolStr = numOfFollowers.GetAttribute( "title" );
+                    int numberOfFollowersInt = toInt( numberOfFolStr );
+
+                    // Click on the followers tab.
+                    numOfFollowers.Click();
+
+                    // Now look for the follow button.
+                    // /html/body/div[4]/div/div/div[2]/ul/div/li[1]/div/div[3]/button
+                    // /html/body/div[4]/div/div/div[2]/ul/div/li[2]/div/div[3]/button
+                    // See the pattern?
+                    string pathToFollowFirst = "/html/body/div[4]/div/div/div[2]/ul/div/li[";
+                    string pathToFollowSecond = "]/div/div[3]";
+
+                    // Iterate. We need the index starting at 0 for the strings so start at 1.
+                    IWebElement followFollower = null;
+                    IWebElement list = driver.FindElement( By.XPath( "/html/body/div[4]/div/div/div[2]" ), 10 );
+                    int counter = 1;
+                    string pathToFollow = "";
+
+                    for( int i = 1; i < numberOfFollowersInt + 1; ++i )
+                    {
+
+                        try
+                        {
+
+                            pathToFollow = pathToFollowFirst + i.ToString() + pathToFollowSecond;
+                            followFollower = driver.FindElement( By.XPath( pathToFollow ) );
+
+                        }
+
+                        catch( Exception NoSuchElementException )
+                        {
+
+                            pathToFollow = pathToFollowFirst + i.ToString() + "]/div/div[2]";
+                            followFollower = driver.FindElement( By.XPath( pathToFollow ), 1 );
+
+                        }
+
+                        string followingOrNot = followFollower.Text;
+
+                        if( followingOrNot == "Follow" )
+                        {
+
+                            followFollower.Click();
+                            Console.WriteLine( followingOrNot );
+
+                        }
+                        
+                        IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
+                        js.ExecuteScript( "arguments[0].scrollIntoView(false);", followFollower );
+                        
+                        Sleep( 200 );
+
+                    }
+
+                }
+
+                /*var friendFound = driver.FindElement( By.XPath( enterFriend ), 10 );
                 if( friendFound != null )
-                { 
+                {
 
                     friendFound.SendKeys( friend );
                     Sleep( time * 3 );
@@ -166,29 +231,10 @@ namespace InstagramFollowers
 
                     IWebElement fds = null;
 
-                    //int waitTime = time / 5, counter = 0, counterTwo = 0, 
                     int counterMax = 0;
 
                     for (int i = 1; i <= sizeOfLoop; ++i)
                     {
-
-                        /*try
-                        { 
-
-                            friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
-                            WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromMilliseconds( waitTime ) );
-                            fds = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists( By.XPath( friends ) ) );
-
-                        }
-
-                        catch( Exception )
-                        {
-
-                            friends = friendsConcatenateOne + i.ToString() + "]/div/div[2]/button";
-                            WebDriverWait wait = new WebDriverWait( driver, System.TimeSpan.FromMilliseconds( waitTime ) );
-                            fds = wait.Until( SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists( By.XPath( friends ) ) );
-
-                        }*/
 
                         try
                         {
@@ -212,19 +258,8 @@ namespace InstagramFollowers
                         if( fds.Text == "Following" || fds.Text == "Requested" )
                         {
 
-                            //if( counter == 1 )
-                            { 
-
-                                driver.FindElement( By.XPath( "/html/body/div[3]/div/div[2]/ul" ) ).Click();
-                                driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
-
-                            }
-
-                            //counter++;
-
-                            //counter %= 2;
-
-                            //counterTwo = 0;
+                            driver.FindElement( By.XPath( "/html/body/div[3]/div/div[2]/ul" ) ).Click();
+                            driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
 
                         }
 
@@ -237,43 +272,13 @@ namespace InstagramFollowers
 
                                 driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
 
-                            //counter = 0;
-
-                            //counterTwo++;
-
-                            //counterTwo %= 3;
-
                         }
 
                         Sleep( time / 2 );
 
-                        //{
-
-                        //    Debug.WriteLine( "Hit!" );
-
-                        //    fds.Click();
-
-                        //    if( i % 5 == 4 )
-
-                        //    driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
-
-                        //    Sleep( 500 );
-
-                        //}
-
-                        /*counterMax++;
-
-                        if( i != 0 && counterMax % 20 == 0 )
-                        {
-
-                            Sleep( 60000 );
-                            Debug.WriteLine( "You hit the max count nigglet!" );
-
-                        }*/
-
                     }
 
-                }
+                }*/
 
             }
 
@@ -286,6 +291,28 @@ namespace InstagramFollowers
 
         }
 
+        public void ScrollTo(IWebElement element, IWebDriver driver, int xPosition = 0, int yPosition = 0 )
+        {
+            IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
+            js.ExecuteScript( string.Format( "{0}.scrollTo({1}, {2})", element, xPosition, yPosition ) );
+        }
+
+        public IWebElement ScrollToView(IWebDriver driver, By selector)
+        {
+            var element = driver.FindElement( selector, 10 );
+            ScrollToView( driver, element );
+            return element;
+        }
+
+        public void ScrollToView(IWebDriver driver, IWebElement element)
+        {
+            if (element.Location.Y > 200)
+            {
+                ScrollTo( element, driver, 0, element.Location.Y - 100); // Make sure element is in the view but below the top navigation pane
+            }
+
+        }
+
         private void Sleep( int time )
         {
 
@@ -293,6 +320,41 @@ namespace InstagramFollowers
 
         }
 
+        int toInt( string x )
+        {
+  
+            StringBuilder sb = new StringBuilder();
+            for( int i = 0; i < x.Length; ++i )
+            {
+    
+                char c = x[i];
+      
+                if( c != ',' )
+                {
+      
+                    sb.Append(c);
+      
+                }
+    
+            }
+    
+            return Convert.ToInt32( sb.ToString() );
+  
+        }
+
+    }
+
+    public static class WebDriverExtensions
+    {
+        public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
+        {
+            if (timeoutInSeconds > 0)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                return wait.Until(drv => drv.FindElement(by));
+            }
+            return driver.FindElement(by);
+        }
     }
 
 }

@@ -138,9 +138,10 @@
             this.FollowOrFollowingLabel.AutoSize = true;
             this.FollowOrFollowingLabel.Location = new System.Drawing.Point(37, 198);
             this.FollowOrFollowingLabel.Name = "FollowOrFollowingLabel";
-            this.FollowOrFollowingLabel.Size = new System.Drawing.Size(364, 13);
+            this.FollowOrFollowingLabel.Size = new System.Drawing.Size(363, 13);
             this.FollowOrFollowingLabel.TabIndex = 9;
-            this.FollowOrFollowingLabel.Text = "Followers or Following? Checked for followers, Unchecked for following";
+            this.FollowOrFollowingLabel.Text = "Followers or Following? Unchecked for followers, checked for following";
+            this.FollowOrFollowingLabel.Click += new System.EventHandler(this.FollowOrFollowingLabel_Click);
             // 
             // Form1
             // 
