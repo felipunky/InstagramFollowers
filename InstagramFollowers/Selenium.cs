@@ -78,19 +78,14 @@ namespace InstagramFollowers
             user = User,
             pass = Pass,
             enterUser = "//*[@id='loginForm']/div/div[3]/button/div",
-            notifications = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
+            //notifications = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
             searchBar = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div",
             friend = Friend,
             searchBarSendKeys = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/input",
             enterFoundFriend = "//*[@id='react-root']/section/nav/div[2]/div/div/div[2]/div[3]/div[2]/div/a[1]",
-            following = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
-            followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
-            numberOfFollowers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a/span",
-            friends = "";
-
-            string[] splitForLoopMaxiter;
-
-            int sizeOfLoop = 0;
+            /*following = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",
+            followers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a",*/
+            numberOfFollowers = "//*[@id='react-root']/section/main/div/header/section/ul/li[2]/a/span";
 
             bool followOrFollowers = FollowOrFollowing;
 
@@ -121,7 +116,7 @@ namespace InstagramFollowers
                 driver.FindElement( By.XPath( enterFoundFriend ), 10 ).Click();
 
                 // When the checkbox is unchecked the app will go to followers.
-                if( followOrFollowers == false )
+                if( true )
                 {
 
                     // Find how many followers exist to be able to loop.
@@ -142,8 +137,10 @@ namespace InstagramFollowers
                     // Iterate. We need the index starting at 0 for the strings so start at 1.
                     IWebElement followFollower = null;
                     IWebElement list = driver.FindElement( By.XPath( "/html/body/div[4]/div/div/div[2]" ), 10 );
-                    int counter = 1;
+                    //int counter = 1;
                     string pathToFollow = "";
+
+                    Random random = new Random();
 
                     for( int i = 1; i < numberOfFollowersInt + 1; ++i )
                     {
@@ -156,13 +153,16 @@ namespace InstagramFollowers
 
                         }
 
-                        catch( Exception NoSuchElementException )
+                        catch( Exception )
                         {
 
                             pathToFollow = pathToFollowFirst + i.ToString() + "]/div/div[2]";
                             followFollower = driver.FindElement( By.XPath( pathToFollow ), 1 );
 
                         }
+
+                        IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
+                        js.ExecuteScript( "arguments[0].scrollIntoView(false);", followFollower );
 
                         string followingOrNot = followFollower.Text;
 
@@ -174,10 +174,7 @@ namespace InstagramFollowers
 
                         }
                         
-                        IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
-                        js.ExecuteScript( "arguments[0].scrollIntoView(false);", followFollower );
-                        
-                        Sleep( 200 );
+                        Sleep( random.Next( 1, time ) );
 
                     }
 
@@ -291,6 +288,11 @@ namespace InstagramFollowers
 
         }
 
+        public double GetRandomNumberInRange(Random random, double minNumber, double maxNumber)
+        {
+            return random.NextDouble() * (maxNumber - minNumber) + minNumber;
+        }
+
         public void ScrollTo(IWebElement element, IWebDriver driver, int xPosition = 0, int yPosition = 0 )
         {
             IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
@@ -316,7 +318,7 @@ namespace InstagramFollowers
         private void Sleep( int time )
         {
 
-            System.Threading.Thread.Sleep( time );
+            System.Threading.Thread.Sleep( TimeSpan.FromSeconds( time ) );
 
         }
 
