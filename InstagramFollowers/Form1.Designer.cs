@@ -39,20 +39,22 @@
             this.FriendText = new System.Windows.Forms.TextBox();
             this.FollowersOrFollowingCheckBox = new System.Windows.Forms.CheckBox();
             this.FollowOrFollowingLabel = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // UsernameText
             // 
             this.UsernameText.Location = new System.Drawing.Point(98, 14);
             this.UsernameText.Name = "UsernameText";
-            this.UsernameText.Size = new System.Drawing.Size(609, 21);
+            this.UsernameText.Size = new System.Drawing.Size(650, 21);
             this.UsernameText.TabIndex = 0;
             this.UsernameText.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // RunButton
             // 
             this.RunButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.RunButton.Location = new System.Drawing.Point(648, 359);
+            this.RunButton.Location = new System.Drawing.Point(604, 321);
             this.RunButton.Margin = new System.Windows.Forms.Padding(2);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(144, 83);
@@ -66,7 +68,7 @@
             this.PasswordText.Location = new System.Drawing.Point(98, 59);
             this.PasswordText.Name = "PasswordText";
             this.PasswordText.PasswordChar = '*';
-            this.PasswordText.Size = new System.Drawing.Size(609, 21);
+            this.PasswordText.Size = new System.Drawing.Size(650, 21);
             this.PasswordText.TabIndex = 1;
             this.PasswordText.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
@@ -104,7 +106,7 @@
             this.WaitTimeText.BackColor = System.Drawing.SystemColors.Window;
             this.WaitTimeText.Location = new System.Drawing.Point(151, 151);
             this.WaitTimeText.Name = "WaitTimeText";
-            this.WaitTimeText.Size = new System.Drawing.Size(554, 21);
+            this.WaitTimeText.Size = new System.Drawing.Size(597, 21);
             this.WaitTimeText.TabIndex = 3;
             // 
             // FriendLabel
@@ -120,7 +122,7 @@
             // 
             this.FriendText.Location = new System.Drawing.Point(98, 107);
             this.FriendText.Name = "FriendText";
-            this.FriendText.Size = new System.Drawing.Size(609, 21);
+            this.FriendText.Size = new System.Drawing.Size(650, 21);
             this.FriendText.TabIndex = 2;
             this.FriendText.TextChanged += new System.EventHandler(this.TextBox1_TextChanged_1);
             // 
@@ -144,12 +146,34 @@
             this.FollowOrFollowingLabel.Text = "Followers or Following? Unchecked for followers, checked for following";
             this.FollowOrFollowingLabel.Click += new System.EventHandler(this.FollowOrFollowingLabel_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(407, 223);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 223);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Follow or Unfollow? Checked to follow ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.FollowersOrFollowingCheckBox);
             this.Controls.Add(this.FollowOrFollowingLabel);
             this.Controls.Add(this.FriendLabel);
@@ -184,6 +208,8 @@
         private System.Windows.Forms.TextBox FriendText;
         private System.Windows.Forms.CheckBox FollowersOrFollowingCheckBox;
         private System.Windows.Forms.Label FollowOrFollowingLabel;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

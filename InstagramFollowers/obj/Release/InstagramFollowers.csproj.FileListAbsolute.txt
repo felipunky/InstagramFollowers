@@ -38,3 +38,4 @@ D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollower
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csproj.CopyComplete
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.exe
 D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.pdb
+D:\Programas\InstagramFollowers\InstagramFollowers\obj\Release\InstagramFollowers.csprojAssemblyReference.cache

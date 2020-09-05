@@ -46,7 +46,9 @@ namespace InstagramFollowers
 
             run.Time = Convert.ToInt32( WaitTimeText.Text );
 
-            run.FollowOrFollowing = false;//FollowersOrFollowingCheckBox.Checked;
+            run.FollowOrFollowing = FollowersOrFollowingCheckBox.Checked;
+
+            run.FollowOrUnfollow = checkBox1.Checked;
 
             run.RunScript();
 

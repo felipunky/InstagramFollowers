@@ -62,6 +62,15 @@ namespace InstagramFollowers
             set;
 
         }
+        
+        public bool FollowOrUnfollow
+        {
+
+            get;
+
+            set;
+
+        }
 
         public void RunScript()
         {
@@ -89,6 +98,8 @@ namespace InstagramFollowers
 
             bool followOrFollowers = FollowOrFollowing;
 
+            bool unfollow = FollowOrUnfollow;
+
             int time = Time;
 
             //Navigate to the page.
@@ -106,176 +117,91 @@ namespace InstagramFollowers
 
                 driver.FindElement( By.XPath( enterUser ) ).Click();
 
-                // Find using the search bar.
-                driver.FindElement( By.XPath( searchBar ), 10 ).Click();
-
-                // Send keys to the search bar.
-                driver.FindElement( By.XPath( searchBarSendKeys ) ).SendKeys( friend );
-
-                // Click on the first friend from the search.
-                driver.FindElement( By.XPath( enterFoundFriend ), 10 ).Click();
-
-                // When the checkbox is unchecked the app will go to followers.
-                if( true )
+                if( unfollow )
                 {
 
-                    // Find how many followers exist to be able to loop.
-                    var numOfFollowers = driver.FindElement( By.XPath( numberOfFollowers ), 10 );
-                    string numberOfFolStr = numOfFollowers.GetAttribute( "title" );
-                    int numberOfFollowersInt = toInt( numberOfFolStr );
+                    // Find using the search bar.
+                    driver.FindElement( By.XPath( searchBar ), 10 ).Click();
 
-                    // Click on the followers tab.
-                    numOfFollowers.Click();
+                    // Send keys to the search bar.
+                    driver.FindElement( By.XPath( searchBarSendKeys ) ).SendKeys( friend );
 
-                    // Now look for the follow button.
-                    // /html/body/div[4]/div/div/div[2]/ul/div/li[1]/div/div[3]/button
-                    // /html/body/div[4]/div/div/div[2]/ul/div/li[2]/div/div[3]/button
-                    // See the pattern?
-                    string pathToFollowFirst = "/html/body/div[4]/div/div/div[2]/ul/div/li[";
-                    string pathToFollowSecond = "]/div/div[3]";
+                    // Click on the first friend from the search.
+                    driver.FindElement( By.XPath( enterFoundFriend ), 10 ).Click();
 
-                    // Iterate. We need the index starting at 0 for the strings so start at 1.
-                    IWebElement followFollower = null;
-                    IWebElement list = driver.FindElement( By.XPath( "/html/body/div[4]/div/div/div[2]" ), 10 );
-                    //int counter = 1;
-                    string pathToFollow = "";
-
-                    Random random = new Random();
-
-                    for( int i = 1; i < numberOfFollowersInt + 1; ++i )
+                    // When the checkbox is unchecked the app will go to followers.
+                    if( !followOrFollowers )
                     {
 
-                        try
+                        // Find how many followers exist to be able to loop.
+                        var numOfFollowers = driver.FindElement( By.XPath( numberOfFollowers ), 10 );
+                        string numberOfFolStr = numOfFollowers.GetAttribute( "title" );
+                        int numberOfFollowersInt = toInt( numberOfFolStr );
+
+                        // Click on the followers tab.
+                        numOfFollowers.Click();
+
+                        // Now look for the follow button.
+                        // /html/body/div[4]/div/div/div[2]/ul/div/li[1]/div/div[3]/button
+                        // /html/body/div[4]/div/div/div[2]/ul/div/li[2]/div/div[3]/button
+                        // See the pattern?
+                        string pathToFollowFirst = "/html/body/div[4]/div/div/div[2]/ul/div/li[";
+                        string pathToFollowSecond = "]/div/div[3]";
+
+                        // Iterate. We need the index starting at 0 for the strings so start at 1.
+                        IWebElement followFollower = null;
+                        IWebElement list = driver.FindElement( By.XPath( "/html/body/div[4]/div/div/div[2]" ), 10 );
+                        //int counter = 1;
+                        string pathToFollow = "";
+
+                        Random random = new Random();
+
+                        for( int i = 1; i < numberOfFollowersInt + 1; ++i )
                         {
 
-                            pathToFollow = pathToFollowFirst + i.ToString() + pathToFollowSecond;
-                            followFollower = driver.FindElement( By.XPath( pathToFollow ) );
+                            try
+                            {
 
-                        }
+                                pathToFollow = pathToFollowFirst + i.ToString() + pathToFollowSecond;
+                                followFollower = driver.FindElement( By.XPath( pathToFollow ) );
 
-                        catch( Exception )
-                        {
+                            }
 
-                            pathToFollow = pathToFollowFirst + i.ToString() + "]/div/div[2]";
-                            followFollower = driver.FindElement( By.XPath( pathToFollow ), 1 );
+                            catch( Exception )
+                            {
 
-                        }
+                                pathToFollow = pathToFollowFirst + i.ToString() + "]/div/div[2]";
+                                followFollower = driver.FindElement( By.XPath( pathToFollow ), 1 );
 
-                        IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
-                        js.ExecuteScript( "arguments[0].scrollIntoView(false);", followFollower );
+                            }
 
-                        string followingOrNot = followFollower.Text;
+                            IJavaScriptExecutor js = ( IJavaScriptExecutor ) driver;
+                            js.ExecuteScript( "arguments[0].scrollIntoView(false);", followFollower );
 
-                        if( followingOrNot == "Follow" )
-                        {
+                            string followingOrNot = followFollower.Text;
 
-                            followFollower.Click();
-                            Console.WriteLine( followingOrNot );
+                            if( followingOrNot == "Follow" )
+                            {
 
-                        }
+                                followFollower.Click();
+                                Console.WriteLine( followingOrNot );
+
+                            }
                         
-                        Sleep( random.Next( 1, time ) );
+                            Sleep( random.Next( 1, time ) );
+
+                        }
 
                     }
 
                 }
 
-                /*var friendFound = driver.FindElement( By.XPath( enterFriend ), 10 );
-                if( friendFound != null )
+                else
                 {
 
-                    friendFound.SendKeys( friend );
-                    Sleep( time * 3 );
-
-                    driver.FindElement( By.XPath( enterFoundFriend ) ).Click();
-                    Sleep( time * 3 );
-
-                    string friendsConcatenateOne = "//html/body/div[3]/div/div[2]/ul/div/li[",
-                           friendsConcatenateTwo = "]/div/div[3]/button"; 
 
 
-                    if ( followOrFollowers == false )
-                    { 
-
-                        following = followers;
-
-                    }
-
-                    var followFollowers = driver.FindElement( By.XPath( following ) );
-                    followFollowers.Click();
-
-                    splitForLoopMaxiter = followFollowers.Text.Split( ' ' );
-                    string amount = splitForLoopMaxiter[0];
-
-                    char[] chars = amount.ToCharArray(); 
-
-                    int lengthOfAmount = chars.Length - 1;
-
-                    if( chars[lengthOfAmount] == 'k' )
-                    {
-
-                        amount = amount.Remove( lengthOfAmount, 1 );
-
-                    }
-
-                    Debug.WriteLine( amount );
-
-                    var c = System.Threading.Thread.CurrentThread.CurrentCulture;
-
-                    decimal number = decimal.Parse( amount, c );
-                    sizeOfLoop = Convert.ToInt32( number );
-                    Sleep( time * 3 );
-
-                    IWebElement fds = null;
-
-                    int counterMax = 0;
-
-                    for (int i = 1; i <= sizeOfLoop; ++i)
-                    {
-
-                        try
-                        {
-
-                            friends = friendsConcatenateOne + i.ToString() + friendsConcatenateTwo;
-                            fds = driver.FindElement( By.XPath( friends ) );
-                            //Sleep( time / 4 );
-
-                        }
-
-                        catch( NoSuchElementException )
-                        {
-
-                            friends = friendsConcatenateOne + i.ToString() + "]/div/div[2]/button";
-                            fds = driver.FindElement( By.XPath( friends ) );
-
-                        }
-
-                        Debug.WriteLine( fds.Text );
-
-                        if( fds.Text == "Following" || fds.Text == "Requested" )
-                        {
-
-                            driver.FindElement( By.XPath( "/html/body/div[3]/div/div[2]/ul" ) ).Click();
-                            driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
-
-                        }
-
-                        else
-                        {
-
-                            fds.Click();
-
-                            if( counterMax % 2 == 0 )
-
-                                driver.FindElement( By.TagName( "body" ) ).SendKeys( Keys.ArrowDown );
-
-                        }
-
-                        Sleep( time / 2 );
-
-                    }
-
-                }*/
+                }
 
             }
 
